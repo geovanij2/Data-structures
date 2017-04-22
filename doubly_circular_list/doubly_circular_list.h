@@ -38,7 +38,7 @@ class DoublyCircularList {
 
     //! insere no fim
     void push_back(const T& data) {
-        /*if (empty()) {
+        if (empty()) {
             return push_front(data);
         }
         auto novo = new Node(data, head);
@@ -49,8 +49,7 @@ class DoublyCircularList {
         it->next(novo);
         novo->prev(it);
         head->prev(novo);
-        ++size_; */
-        insert(data, size_);
+        ++size_;
     }
 
     //! insere no começo
