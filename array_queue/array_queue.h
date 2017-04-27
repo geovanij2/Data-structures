@@ -19,7 +19,7 @@ class ArrayQueue {
     */
     ArrayQueue() {
         contents = new T[DEFAULT_SIZE];
-        size_ = -1;
+        size_ = 0;
     }
     //! Um construtor
     /*!
@@ -28,7 +28,7 @@ class ArrayQueue {
     explicit ArrayQueue(std::size_t max) {
         max_size_ = max;
         contents = new T[max];
-        size_ = -1;
+        size_ = 0;
     }
     //! Um destrutor
     /*!
@@ -46,8 +46,8 @@ class ArrayQueue {
         if (full()) {
             throw std::out_of_range("queue full");
         }
-        size_ += 1;
         contents[size_] = data;
+        ++size_;
     }
     //! retira da fila
     /*!
@@ -58,10 +58,10 @@ class ArrayQueue {
             throw std::out_of_range("queue empty");
         }
         T aux_ = contents[0];
-        for (int i = 0; i < size_; i++) {
+        for (int i = 0; i < size_ - 1; ++i) {
             contents[i] = contents[i+1];
         }
-        size_ -=1;
+        --size_;
         return aux_;
     }
     //! retorna o ultimo elemento da fila
@@ -69,15 +69,15 @@ class ArrayQueue {
         if (empty()) {
             throw std::out_of_range("queue empty");
         }
-        return contents[size_];
+        return contents[size_ - 1];
     }
     //! limpa fila
     void clear() {
-        size_ = -1;
+        size_ = 0;
     }
     //! retorna tamanho atual
     std::size_t size() {
-        return size_ +1;
+        return size_;
     }
     //! retorna tamanho maximo
     std::size_t max_size() {
@@ -85,11 +85,11 @@ class ArrayQueue {
     }
     //! retorna true se a fila estiver vazia
     bool empty() {
-        return size_ == -1;
+        return size_ == 0;
     }
     //! retorna true se fila estiver cheia
     bool full() {
-        return size_ == max_size_ - 1;
+        return size_ == max_size_;
     }
 
  private:
