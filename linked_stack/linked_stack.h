@@ -48,7 +48,6 @@ class LinkedStack: public LinkedList<T> {
     bool empty() const {
         return LinkedList<T>::empty();
     }
-
     //! tamanho
     /*
     retorna o tamanho atual da pilha encadeada
